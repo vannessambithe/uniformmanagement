@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "661185287741",
+    "project_id": "uniform-management-6c1b4",
+    "storage_bucket": "uniform-management-6c1b4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661185287741:android:564908d7c8895c7519bc54",
+        "android_client_info": {
+          "package_name": "com.example.uniform_management"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "661185287741-etejmdo4q4gt8l1paagchfma52g51n48.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCj-rqlE9dnd7IdwamLCpHb0tvXmHwUNu0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "661185287741-etejmdo4q4gt8l1paagchfma52g51n48.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
