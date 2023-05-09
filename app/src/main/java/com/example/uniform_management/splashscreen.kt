@@ -13,7 +13,7 @@ class splashscreen : AppCompatActivity() {
         setContentView(R.layout.activity_splashscreen)
 
         students_img = findViewById(R.id.studentsimg)
-        students_img.alpha = 0
+        students_img.alpha = 0f
         students_img.animate().setDuration(1500).alpha( 1f).withEndAction {
             val i = Intent( this, MainActivity::class.java)
             startActivity(i)
