@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.example.uniform_management.databinding.ActivityLogBinding
 import com.example.uniform_management.databinding.ActivityRegisterBinding
@@ -13,53 +14,64 @@ import com.google.firebase.auth.FirebaseAuth
 
 class Register : AppCompatActivity() {
 
-    private lateinit var binding: ActivityRegisterBinding
-    private lateinit var edt_emailout: EditText
-    private lateinit var edt_passout: EditText
-    private lateinit var btn_log: Button
-    private lateinit var btn_reg: Button
-    private lateinit var auth: FirebaseAuth
+    private lateinit var NameEdit :EditText
+    private lateinit var EmailEdit :EditText
+    private lateinit var PassEdit :EditText
+    private lateinit var RegButton :Button
+    private lateinit var LoginText : TextView
+
+    //Initialise firebase
+    private lateinit var Auth: FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_register)
 
-        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        NameEdit = findViewById(R.id.edt_name_reg)
+        EmailEdit = findViewById(R.id.edt_email_reg)
+        PassEdit = findViewById(R.id.edt_pass_reg)
+        RegButton = findViewById(R.id.btn_register)
+        LoginText = findViewById(R.id.txt_login_reg)
 
-        setContentView(binding.root)
+        // Initialise firebase again
+        Auth = FirebaseAuth.getInstance()
 
-        edt_emailout = findViewById(R.id.edtemailout)
-        edt_passout = findViewById(R.id.edtpassout)
-        btn_log = findViewById(R.id.btnlog)
-        btn_reg = findViewById(R.id.btnreg)
+        RegButton.setOnClickListener {
+            val name = NameEdit.text.toString().trim()
+            val email = EmailEdit.text.toString().trim()
+            val password = PassEdit.text.toString().trim()
 
-        auth = FirebaseAuth.getInstance()
-        binding.btnreg.setOnClickListener {
-            var email = edt_emailout.text.toString().trim()
-            var password = edt_passout.text.toString().trim()
-
-
-            if ( email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "one of the fields is empty :(", Toast.LENGTH_SHORT).show()
+            //Validate inputs
+            if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "One of the fields is empty :(", Toast.LENGTH_SHORT).show()
             } else {
-                //create a user in firebase
-                auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) {
-                    if (it.isSuccessful){
-                        Toast.makeText(this, "user created successfully", Toast.LENGTH_SHORT).show()
-                    }else{
-                        Toast.makeText(this, "Failed to create Account", Toast.LENGTH_SHORT).show()
-                        Log.d("TAG", "error-->",it.exception)
-                    }
+                //Create a user in firebase
+                Auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) {
+                    if (it.isSuccessful) {
+                        Toast.makeText(this, "User created Successfully!", Toast.LENGTH_SHORT).show()
 
+                        val gotologin = Intent(this,log::class.java)
+                        startActivity(gotologin)
+                        finish()
+
+                    } else {
+                        Toast.makeText(this, "Failed to create Account", Toast.LENGTH_SHORT).show()
+                    }
                 }
 
             }
-
-
         }
-            binding.btnlog.setOnClickListener {
-                var gotolog = Intent( this, log::class.java)
-                startActivity(gotolog)
-                finish()
-            } }
+
+
+
+
+
+
+
+
+
+
     }
+
+}

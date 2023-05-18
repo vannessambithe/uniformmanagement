@@ -1,58 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/dress"
     android:layout_height="match_parent"
-    android:background="@drawable/trouser"
     tools:context=".log">
 
+
     <EditText
-        android:id="@+id/edtemailin"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="322dp"
+        android:id="@+id/edt_email_login"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="310dp"
+        android:drawableLeft="@drawable/email"
         android:background="@color/lightpink"
+        android:drawablePadding="10dp"
         android:ems="10"
-        android:hint="Enter Your Email"
+        android:hint="Enter your email address"
         android:inputType="textEmailAddress"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/edtpassin"
-        app:layout_constraintStart_toStartOf="@+id/edtpassin"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColorHint="@color/black" />
 
     <EditText
-        android:id="@+id/edtpassin"
-        android:layout_width="294dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="60dp"
+        android:id="@+id/edt_pass_login"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="390dp"
+        android:drawableLeft="@drawable/password"
         android:background="@color/lightpink"
+        android:drawablePadding="10dp"
         android:ems="10"
-        android:hint="Enter Your Password"
+        android:hint="Enter your password"
         android:inputType="textPassword"
-        android:textColorHint="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtemailin"
-        app:passwordToggleEnabled="true"/>
+        android:textColorHint="@color/black" />
 
     <Button
-        android:id="@+id/btnlogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginBottom="40dp"
-        android:text="Register "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:id="@+id/btn_login"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="470dp"
+        android:backgroundTint="#000"
+        android:text="LOG IN"
+        android:textColor="#e6e6cd"
+        app:cornerRadius="40dp" />
 
-    <Button
-        android:id="@+id/btnregister"
+    <TextView
+        android:id="@+id/txt_reg_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="115dp"
-        android:layout_marginBottom="41dp"
-        android:text="Login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:text="Don't have an account?Register here"
+        android:textColor="#5aa69d"
+        android:layout_marginTop="550dp"
+        android:textSize="13sp"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+
+        />
+</RelativeLayout>

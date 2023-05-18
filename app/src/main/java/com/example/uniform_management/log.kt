@@ -5,60 +5,59 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
-import com.example.uniform_management.databinding.ActivityLogBinding
-import com.example.uniform_management.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class log : AppCompatActivity() {
 
-    private lateinit var edt_emailin: EditText
-    private lateinit var edt_passin: EditText
-    private lateinit var btn_login: Button
-    private lateinit var btn_register: Button
-    private lateinit var  auth: FirebaseAuth
+    private lateinit var EditEmail :EditText
+    private lateinit var EditPass :EditText
+    private lateinit var ButtonLogin :Button
+    private lateinit var TextRegister : TextView
+
+    //Initialise firebase
+    private lateinit var Auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         setContentView(R.layout.activity_log)
 
-        edt_emailin = findViewById(R.id.edtemailin)
-        edt_passin = findViewById(R.id.edtpassin)
-        btn_login = findViewById(R.id.btnlogin)
-        btn_register = findViewById(R.id.btnregister)
-        auth = FirebaseAuth.getInstance()
 
+        EditEmail=findViewById(R.id.edt_email_login)
+        EditPass=findViewById(R.id.edt_pass_login)
+        ButtonLogin=findViewById(R.id.btn_login)
+        TextRegister=findViewById(R.id.txt_reg_login)
 
-        btn_login.setOnClickListener {
-            var email = edt_emailin.toString().trim()
-            var password = edt_passin.toString().trim()
+        // Initialise firebase again
+        Auth = FirebaseAuth.getInstance()
 
-            if (email.isEmpty()|| password.isEmpty()){
-                Toast.makeText(this, "one of the fields is empty", Toast.LENGTH_SHORT).show()
+        ButtonLogin.setOnClickListener {
+            val email = EditEmail.text.toString().trim()
+            val password = EditPass.text.toString().trim()
+
+            //validate input
+            if (email.isEmpty()||password.isEmpty()){
+                Toast.makeText(this, "One of the fields is empty :(", Toast.LENGTH_SHORT).show()
             }else{
-                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this){
+                Auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this){
                     if (it.isSuccessful){
-                        Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Login success :)", Toast.LENGTH_SHORT).show()
 
-                        var gotomain = Intent(this, MainActivity::class.java)
-                        startActivity(gotomain)
+                        val goToMain = Intent(this,MainActivity::class.java)
+                        startActivity(goToMain)
                         finish()
-
-
-                    }else{
-                        Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
+                    }else {
+                        Toast.makeText(this, "Login Failed :(", Toast.LENGTH_SHORT).show()
                     }
                 }
-
             }
-
-
-
         }
-        btn_register.setOnClickListener {
-            var gotoreg = Intent(this, Register::class.java)
+        TextRegister.setOnClickListener {
+            val gotoreg = Intent(this,Register::class.java)
             startActivity(gotoreg)
+            finish()
+
         }
 
 
